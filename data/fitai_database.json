@@ -1,0 +1,123 @@
+{
+  "users": [
+    {
+      "id": "usr_3qgd1c1521789629225205",
+      "telegramId": "998901234567",
+      "firstName": "Алишер (Demo)",
+      "username": "fitai_preview",
+      "language": "ru",
+      "isPremium": false,
+      "createdAt": "2026-09-17T07:13:45.205Z",
+      "updatedAt": "2026-09-17T07:55:45.423Z",
+      "onboardingCompleted": true,
+      "profile": {
+        "weight": 78,
+        "targetWeight": 68,
+        "height": 175,
+        "age": 28,
+        "gender": "male",
+        "activityLevel": "moderate",
+        "workoutsPerWeek": 3,
+        "waterGoalMl": 2500,
+        "stepsGoal": 10000,
+        "notificationsEnabled": true
+      }
+    },
+    {
+      "id": "usr_7k5pynes51789630107801",
+      "telegramId": "11223344",
+      "firstName": "Сергей",
+      "lastName": "",
+      "username": "sergey_fit",
+      "language": "ru",
+      "isPremium": false,
+      "createdAt": "2026-09-17T07:28:27.801Z",
+      "updatedAt": "2026-09-17T07:28:27.801Z",
+      "onboardingCompleted": false,
+      "profile": {
+        "weight": 78,
+        "targetWeight": 68,
+        "height": 175,
+        "age": 28,
+        "gender": "male",
+        "activityLevel": "moderate",
+        "workoutsPerWeek": 3,
+        "waterGoalMl": 2500,
+        "stepsGoal": 10000,
+        "notificationsEnabled": true
+      }
+    }
+  ],
+  "subscriptions": [],
+  "payments": [],
+  "paymentSettings": {
+    "cardNumber": "8600 4912 3456 7890",
+    "cardHolder": "FITAI PAYMENTS / ALISHER U.",
+    "bankName": "Kapitalbank / Uzcard / Humo / Visa",
+    "instructions": "1. Переведите указанную сумму на карту.\n2. Сделайте скриншот чека об оплате.\n3. Прикрепите скриншот ниже и нажмите «Я оплатил».\n4. Доступ к Premium будет активирован сразу после подтверждения администратором!",
+    "instructionsUz": "1. Ko‘rsatilgan summani kartaga o‘tkazing.\n2. To‘lov chekining skrinshotini oling.\n3. Chekni yuklang va «Men to‘ladim» tugmasini bosing.\n4. Admin tasdiqlashi bilan Premium darhol yoqiladi!",
+    "instructionsEn": "1. Transfer the exact amount to the card details.\n2. Take a screenshot of the payment receipt.\n3. Attach the screenshot and tap \"I Paid\".\n4. Premium access will be activated immediately upon admin approval!",
+    "price1Month": 99000,
+    "price3Months": 249000,
+    "price1Year": 699000,
+    "currency": "UZS",
+    "updatedAt": "2026-09-17T07:13:34.224Z"
+  },
+  "foodAnalysis": [],
+  "foodDiary": [],
+  "workouts": [],
+  "mealPlans": [],
+  "progress": [],
+  "aiUsage": [],
+  "adminUsers": [
+    {
+      "id": "admin_primary",
+      "username": "Timurcik",
+      "passwordHash": "$2b$10$XpARYPY.ejSnAU3GVvic9eT.G1ewhHxYc.MKSy0k0YSBXg6dBqa/a",
+      "role": "superadmin",
+      "createdAt": "2026-09-17T07:13:34.322Z",
+      "updatedAt": "2026-09-17T07:13:34.322Z"
+    }
+  ],
+  "notifications": [],
+  "aiChatHistory": [],
+  "shoppingLists": [],
+  "dailyActivity": [
+    {
+      "id": "act_1789629225652",
+      "userId": "usr_3qgd1c1521789629225205",
+      "date": "2026-09-17",
+      "waterMl": 0,
+      "waterGoalMl": 2500,
+      "steps": 0,
+      "stepsGoal": 10000,
+      "streakCount": 3
+    },
+    {
+      "id": "act_1789630107830",
+      "userId": "usr_7k5pynes51789630107801",
+      "date": "2026-09-17",
+      "waterMl": 0,
+      "waterGoalMl": 2500,
+      "steps": 0,
+      "stepsGoal": 10000,
+      "streakCount": 3
+    }
+  ],
+  "momDinnerIdeas": [],
+  "momChildActivities": [],
+  "momFamilyMenus": [],
+  "momShoppingLists": [],
+  "momBudgetPlans": [],
+  "momQuickRecipes": [],
+  "momFoodPhotos": [],
+  "momDayPlans": [],
+  "aiSettings": {
+    "enabled": true,
+    "provider": "Google Gemini",
+    "model": "gemini-3.8-flash",
+    "rateLimitPerUserPerDay": 50,
+    "totalRequests": 0,
+    "totalErrors": 0
+  }
+}

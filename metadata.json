@@ -1,0 +1,10 @@
+{
+  "name": "FitAI",
+  "description": "AI-тренер и AI-диетолог для похудения в Telegram Mini App с модулем «Для мам», семейным меню, идеями ужина, активностями для детей и умным бюджетом",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

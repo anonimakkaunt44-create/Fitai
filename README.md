@@ -42,6 +42,7 @@ FitAI — это современное полнофункциональное �
 ├── CLOUDFLARE_GUIDE_RU.md      # Пошаговая инструкция запуска с iPhone
 ├── wrangler.jsonc              # Конфигурация Cloudflare Workers, D1 и R2
 ├── package.json
+├── package-lock.json           # Согласованный lockfile для npm ci в Cloudflare
 └── tsconfig.json
 ```
 

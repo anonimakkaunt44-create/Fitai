@@ -77,7 +77,12 @@
 5. Теперь нажмите **Edit code** или вернитесь в список Workers и нажмите на `fitai-telegram-app`.
 
 *(Самый удобный способ публикации — автоматический через GitHub)*:
-В разделе Worker перейдите во вкладку **Settings** ➡️ **Build & Deploy** ➡️ **Build source** ➡️ нажмите **Connect GitHub** и выберите ваш репозиторий. Cloudflare сам будет обновлять бота при каждом изменении!
+В разделе Worker перейдите во вкладку **Settings** ➡️ **Build & Deploy** ➡️ **Build source** ➡️ нажмите **Connect GitHub** и выберите ваш репозиторий.
+- **Build command** (Команда сборки): `npm run build:cf`
+- **Output directory** (Папка сборки): `dist`
+- **Package manager**: `npm` (будет выбран автоматически благодаря согласованному файлу `package-lock.json`).
+
+> 💡 **Важно**: В проекте используется надежный **npm** с файлом `package-lock.json`. Старый несовместимый файл `bun.lock` (который вызывал ошибку `UnknownLockfileVersion` в Cloudflare) удален. Теперь Cloudflare выполняет быструю чистую установку через `npm ci`.
 
 ---
 

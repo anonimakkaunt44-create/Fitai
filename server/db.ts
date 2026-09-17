@@ -45,6 +45,7 @@ export interface User {
   language: 'ru' | 'uz' | 'en';
   isPremium: boolean;
   premiumUntil?: string; // ISO Date string
+  isAdmin?: boolean;
   createdAt: string;
   updatedAt: string;
   onboardingCompleted: boolean;

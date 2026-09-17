@@ -6,11 +6,12 @@
 export const persistentStorage = {
   async getItem(key: string): Promise<string | null> {
     // 1. Try Telegram CloudStorage first if running in Telegram Mini App
-    if (typeof window !== 'undefined' && window.Telegram?.WebApp?.CloudStorage?.getItem) {
+    const cloudStorage = typeof window !== 'undefined' ? (window.Telegram?.WebApp as any)?.CloudStorage : null;
+    if (cloudStorage?.getItem) {
       try {
         const cloudVal = await new Promise<string | null>((resolve) => {
           try {
-            window.Telegram.WebApp.CloudStorage.getItem(key, (err: any, value: string) => {
+            cloudStorage.getItem(key, (err: any, value: string) => {
               if (!err && typeof value === 'string' && value.length > 0) {
                 resolve(value);
               } else {
@@ -52,9 +53,10 @@ export const persistentStorage = {
     } catch {}
 
     // 2. Save to Telegram CloudStorage permanently (survives webview closure, reloads, and device switches)
-    if (typeof window !== 'undefined' && window.Telegram?.WebApp?.CloudStorage?.setItem) {
+    const cloudStorage = typeof window !== 'undefined' ? (window.Telegram?.WebApp as any)?.CloudStorage : null;
+    if (cloudStorage?.setItem) {
       try {
-        window.Telegram.WebApp.CloudStorage.setItem(key, value, () => {});
+        cloudStorage.setItem(key, value, () => {});
       } catch {
         // ignore
       }
@@ -68,9 +70,10 @@ export const persistentStorage = {
       }
     } catch {}
 
-    if (typeof window !== 'undefined' && window.Telegram?.WebApp?.CloudStorage?.removeItem) {
+    const cloudStorage = typeof window !== 'undefined' ? (window.Telegram?.WebApp as any)?.CloudStorage : null;
+    if (cloudStorage?.removeItem) {
       try {
-        window.Telegram.WebApp.CloudStorage.removeItem(key, () => {});
+        cloudStorage.removeItem(key, () => {});
       } catch {}
     }
   },

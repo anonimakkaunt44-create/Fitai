@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import { createServer as createViteServer } from 'vite';
+import fs from 'fs';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import dotenv from 'dotenv';
@@ -53,7 +53,8 @@ async function startServer() {
     next();
   });
 
-  // Healthcheck
+  // Healthchecks for Cloud Run readiness/liveness probes
+  app.get('/healthz', (req, res) => res.status(200).send('OK'));
   app.get('/api/health', (req, res) => {
     res.json({
       status: 'ok',
@@ -1185,21 +1186,40 @@ async function startServer() {
   // ====================================================
 
   if (process.env.NODE_ENV !== 'production') {
+    const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: 'spa',
     });
     app.use(vite.middlewares);
   } else {
-    const distPath = path.join(process.cwd(), 'dist');
+    const distCandidates = [
+      path.join(process.cwd(), 'dist'),
+      __dirname,
+      path.join(__dirname, '..', 'dist'),
+    ];
+    const distPath = distCandidates.find((p) => fs.existsSync(path.join(p, 'index.html'))) || path.join(process.cwd(), 'dist');
     app.use(express.static(distPath));
     app.get('*', (req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
+      const indexPath = path.join(distPath, 'index.html');
+      if (fs.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+      } else {
+        res.status(200).send('<!DOCTYPE html><html><head><meta charset="utf-8"><title>FitAI</title></head><body><div id="root"></div></body></html>');
+      }
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`FitAI server running on http://0.0.0.0:${PORT}`);
+  // Multi-environment port configuration:
+  // - In AI Studio Dev Sandbox: NGINX_PORT or CONTROL_PLANE_PORT is set, dev server must bind to port 3000.
+  // - In Cloud Run Production: Cloud Run specifies PORT (typically 8080) and expects container ingress on that port.
+  const defaultPort = 3000;
+  const isDevSandbox = Boolean(process.env.NGINX_PORT || process.env.CONTROL_PLANE_PORT);
+  const cloudRunPort = process.env.PORT ? parseInt(process.env.PORT, 10) : defaultPort;
+  const primaryPort = isDevSandbox ? defaultPort : cloudRunPort;
+
+  app.listen(primaryPort, '0.0.0.0', () => {
+    console.log(`FitAI server running on http://0.0.0.0:${primaryPort} (mode: ${process.env.NODE_ENV || 'development'})`);
   });
 }
 
